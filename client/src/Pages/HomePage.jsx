@@ -1,9 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
+import HomeBanner from '../Components/HomeBanner'
+import Netflix_Image from '../assets/homeTitle.webp'
+import { Box, Button, styled } from '@mui/material'
+import { InfoOutlined, PlayArrow } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
 
+  const navigate = useNavigate()
   const [isScrolled, setIsScrolled] = useState(false)
 
   window.onscroll = () => {
@@ -14,58 +20,71 @@ const HomePage = () => {
   return (
     <>
       <Navbar isScrolled={isScrolled} />
-      <p style={{ margin: '7rem 0' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
+      <HomeBanner />
 
-        Home
-        Movies
-        TV Shows
-        My List
+      <HomeContainer>
 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
+        <Container
+        >
+          <Image src={Netflix_Image} alt="ImageOfNetflixlogo" />
 
-        Home
-        Movies
-        TV Shows
-        My List
+          <ButtonContainer>
 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
+            <Button
+              onClick={() => {
+                navigate('/video')
+              }}
+              variant='contained'
+              color='error'
+              size='large'
+              sx={{ width: '8rem' }}
+            >
+              <PlayArrow
+                style={{ fontSize: 30 }} />
+              Play
+            </Button>
 
-        Home
-        Movies
-        TV Shows
-        My List
+            <Button
+              variant='contained'
+              color='error'
+              size='large'
+              sx={{ width: '8rem', height: '46px' }}
+            >
+              Info &nbsp;
+              <InfoOutlined style={{ fontSize: 22 }} />
+            </Button>
 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
+          </ButtonContainer>
 
-        Home
-        Movies
-        TV Shows
-        My List
+        </Container>
 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
-
-        Home
-        Movies
-        TV Shows
-        My List
-
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
-
-        Home
-        Movies
-        TV Shows
-        My List
-
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae Netflix_Logo
-
-        Home
-        Movies
-        TV Shows
-        My List
-
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet repellat exercitationem soluta aut commodi non deleniti tenetur quam iste voluptatibus? Soluta maxime sint, consectetur tempora aut obcaecati aliquid sed provident, iusto consequuntur accusamus consequatur voluptatem numquam expedita, repudiandae debitis nemo laudantium ex est rem. Quidem rerum officia reprehenderit iure assumenda quis culpa, sint animi voluptatum fuga voluptas minima repellendus quam tempora placeat? A in tempora qui reprehenderit eos aspernatur explicabo sequi voluptatum omnis perferendis recusandae odio modi blanditiis quibusdam, deleniti quidem ex delectus nam earum tempore, repellat, distinctio eligendi sed! At ullam recusandae</p>
+      </HomeContainer>
     </>
   )
 }
+
+const HomeContainer = styled(Box)`
+position : relative;
+width : 100vw;
+height : 100vh;
+`
+
+const Container = styled(Box)`
+position: absolute; 
+bottom: 100px;
+left: 35px;
+`
+
+const Image = styled("img")(({ theme }) => ({
+  width: "40rem"
+}))
+
+const ButtonContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: '8px',
+  alignItems: 'center',
+  marginTop: '10px',
+}))
+
 
 export default HomePage

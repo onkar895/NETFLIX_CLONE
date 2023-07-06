@@ -3,11 +3,17 @@
 import React, { useState } from 'react'
 import Logo from '../assets/logo.png'
 import { styled, Box, Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Menu, Close } from '@mui/icons-material'
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { signOut } from 'firebase/auth'
+import { firebaseAuth } from '../Utils/firebase-config'
+import { onAuthStateChanged } from 'firebase/auth'
 
 
 const Navbar = ({ isScrolled }) => {
+
+  const navigate = useNavigate()
 
   const links = [
     { name: "Home", link: "/" },
@@ -16,12 +22,16 @@ const Navbar = ({ isScrolled }) => {
     { name: "My List", link: "/mylist" },
   ];
 
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (!currentUser) navigate('/')
+  })
+
   const [showMenu, setShowMenu] = useState(false)
 
   return (
     <NavbarContainer
       sx={{
-        height: showMenu ? "auto" : "6.5rem", background: isScrolled || showMenu ? "black" : ""
+        height: showMenu ? "auto" : "6.5rem", background: isScrolled || showMenu ? "black" : "", zIndex: 2
       }}
     >
 
@@ -49,6 +59,20 @@ const Navbar = ({ isScrolled }) => {
             )
           })
         }
+
+        <PowerSettingsNewIcon
+          onClick={() => signOut(firebaseAuth)}
+          sx={{
+            ml: "10px",
+            cursor: 'pointer',
+            fontSize: '25px',
+            ":hover":
+              { color: "red" }
+          }}
+          color='white'
+        />
+
+
       </UlStyled>
 
     </NavbarContainer>
@@ -82,12 +106,15 @@ const UlStyled = styled("ul")(({ theme }) => ({
   listStyle: 'none',
   marginLeft: '10px',
 
+
   " & > li ": {
     margin: '0 15px',
+
   },
 
   "& a": {
     textDecoration: 'none',
+    color: 'white',
   },
   [theme.breakpoints.down("lg")]: {
     flexDirection: 'column',

@@ -14,7 +14,11 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 
 const SignUp = () => {
 
+  // Initializing the navigate variable using the useNavigate hook from 'react-router-dom' package. This hook allows navigation between different routes.
   const navigate = useNavigate()
+
+  //  showPassword: Represents whether the password field should display the password or not.
+  // formValues: Represents the form input values for email and password fields.
   const [showPassword, setShowPassword] = useState(false)
   const [formValues, setFormValues] = useState({
     email: "",
@@ -31,10 +35,17 @@ const SignUp = () => {
       console.log(err, "error while handling signup")
     }
   }
+  // Declared an asynchronous function handleSignUp that will handle the form submission when the sign-up button is clicked:
+  //     It prevents the default form submission behavior.
+  //     Extracts the email and password from the formValues.
+  //    Calls the createUserWithEmailAndPassword function from Firebase's authentication module (firebase/auth) with the email and password.
+  //   If there's an error, it logs the error message to the console.
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) navigate('/home')
   })
+  // Listening for changes in the authentication state using the onAuthStateChanged function from Firebase's authentication module:
+  // If a user is authenticated(i.e., logged in), it navigates to the '/home' route using the navigate function.
 
   return (
 
@@ -80,7 +91,7 @@ const SignUp = () => {
 
           <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
               value={formValues.password}
@@ -89,12 +100,22 @@ const SignUp = () => {
                 [e.target.name]: e.target.value
               })}
             />
+            {/* value={formValues.email}: 
+            Binds the value of the input field to the email property in the formValues state variable. This ensures that the input field reflects the current value of the email property.
+
+            onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}: 
+            Sets up an event handler for the input's onChange event. 
+            When the user types in the input field, this event handler is triggered. 
+            It updates the formValues state variable by spreading the existing formValues object and updating the email property with the new value entered by the user. 
+            This allows the input field to be controlled and keep track of the user's input. */}
 
             <Box
-              sx={{ cursor: 'pointer', position: 'absolute', margin: '8px 10px 0 0' }}
+              sx={{ cursor: 'pointer', position: 'absolute', margin: '15px 10px 0 0' }}
               onClick={(handleSignUp) => setShowPassword(!showPassword)} >
+
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </Box>
+
 
           </Box>
 
@@ -157,6 +178,7 @@ display: flex;
 ;
 
 & input{
+  margin-top : 10px;
   padding: 1.5rem;
   outline: none;
   width: 25vw;

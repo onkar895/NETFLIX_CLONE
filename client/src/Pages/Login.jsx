@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import { Box, styled, Button, Typography, TextField, FormControlLabel, Checkbox } from '@mui/material'
+import { Box, styled, Button, Typography, TextField, FormControlLabel, Checkbox, Link } from '@mui/material'
 import Background from '../Components/Background'
 import { useNavigate } from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -113,7 +113,7 @@ const Login = () => {
 
           <FormControlLabel
             control={
-              <Checkbox sx={{ color: 'grey' }}
+              <Checkbox defaultChecked sx={{ color: 'grey' }}
                 name='checked8'
                 color='primary'
                 size="medium"
@@ -122,7 +122,7 @@ const Login = () => {
             label="Remember me"
           />
 
-          <Typography sx={{ marginTop: '10px' }}>Need Help ?</Typography>
+          <Typography sx={{ marginTop: '10px', cursor: 'pointer' }}>Need Help ?</Typography>
 
         </CheckBoxStyled>
 
@@ -134,12 +134,10 @@ const Login = () => {
             New to Netflix ? &nbsp;
           </Box>
 
-          <Box
-            onClick={() => navigate('/signup')}
-            sx={{ cursor: "pointer", color: "white", fontWeight: 'bolder' }}
-          >
+          <SignLink
+            onClick={() => navigate('/signup')} href="#">
             Sign Up Now
-          </Box>
+          </SignLink>
 
         </Typography>
 
@@ -188,6 +186,12 @@ const CheckBoxStyled = styled(Box)`
 color : grey;
 display : flex;
 justify-content : space-between;
+`
+const SignLink = styled(Link)`
+ font-family: "Trebuchet MS";
+cursor: pointer;
+color: white;
+font-weight : bolder;
 `
 
 export default Login

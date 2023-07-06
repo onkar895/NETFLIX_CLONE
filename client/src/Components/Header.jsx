@@ -21,14 +21,18 @@ const Header = ({ login }) => {
           <img src={Logo} alt="Netflix_Logo" width={180} />
         </Box>
 
-        <Button sx={{ marginRight: '20px' }}
-          variant="contained"
-          color="error"
-          size='large'
-          onClick={() => navigate(login ? '/' : "/signup")}>
+        {
+          login &&
+          (
+            <Button sx={{ marginRight: '20px' }}
+              variant="contained"
+              color="error"
+              size='large'
+              onClick={() => navigate('/')}> Sign In
+            </Button>
+          )
+        }
 
-          {login ? 'Log In' : 'Sign Up'}
-        </Button>
 
       </ToolbarStyle>
 
