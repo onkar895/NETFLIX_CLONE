@@ -18,7 +18,7 @@ const Header = ({ login }) => {
       <ToolbarStyle>
 
         <Box>
-          <img src={Logo} alt="Netflix_Logo" width={180} />
+          <img src={Logo} alt="Netflix_Logo" width={200} />
         </Box>
 
         {

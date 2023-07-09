@@ -2,6 +2,7 @@
 import React from 'react'
 import video from '../assets/video.mp4'
 import { Box, styled } from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const VideoPlayer = () => {
   return (
@@ -13,6 +14,7 @@ const VideoPlayer = () => {
           src={video}
           autoPlay
           controls />
+
 
       </VideoContainer>
 

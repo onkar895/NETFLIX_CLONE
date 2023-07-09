@@ -13,7 +13,7 @@ const HomeBanner = () => {
   )
 }
 
-const Image = styled("Img")`
+const Image = styled("img")`
 position : absolute;
 top : 0;
 left : 0;

@@ -1,16 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import HomeBanner from '../Components/HomeBanner'
 import Netflix_Image from '../assets/homeTitle.webp'
 import { Box, Button, styled } from '@mui/material'
 import { InfoOutlined, PlayArrow } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMovies, getGenres } from '../Store'
+import Slider from '../Components/Slider'
 
 const HomePage = () => {
 
   const navigate = useNavigate()
   const [isScrolled, setIsScrolled] = useState(false)
+
+  const genresLoaded = useSelector((state) => state.netflix.genresLoaded)
+  const movies = useSelector((state) => state.netflix.movies)
+  // console.log(movies)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getGenres())
+  }, [])
+
+  useEffect(() => {
+    if (genresLoaded) dispatch(fetchMovies({ type: "all" }))
+  }, [])
+
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true)
@@ -20,12 +39,13 @@ const HomePage = () => {
   return (
     <>
       <Navbar isScrolled={isScrolled} />
+
       <HomeBanner />
 
       <HomeContainer>
 
-        <Container
-        >
+        <Container>
+
           <Image src={Netflix_Image} alt="ImageOfNetflixlogo" />
 
           <ButtonContainer>
@@ -35,9 +55,18 @@ const HomePage = () => {
                 navigate('/video')
               }}
               variant='contained'
-              color='error'
               size='large'
-              sx={{ width: '8rem' }}
+              sx={{
+                width: '8rem',
+                background: 'white',
+                color: 'black',
+                fontWeight: 'bolder',
+
+                ":hover": {
+                  background: "red",
+                  color: 'white',
+                }
+              }}
             >
               <PlayArrow
                 style={{ fontSize: 30 }} />
@@ -46,9 +75,19 @@ const HomePage = () => {
 
             <Button
               variant='contained'
-              color='error'
               size='large'
-              sx={{ width: '8rem', height: '46px' }}
+              sx={{
+                width: '8rem',
+                height: '46px',
+                background: 'rgba(225,225,225,0.6)',
+                fontWeight: 'bolder',
+                color: 'black',
+
+                ":hover": {
+                  background: " rgba(255, 0, 0,0.6) ",
+                  color: 'white',
+                }
+              }}
             >
               Info &nbsp;
               <InfoOutlined style={{ fontSize: 22 }} />
@@ -59,6 +98,9 @@ const HomePage = () => {
         </Container>
 
       </HomeContainer>
+
+      <Slider movies={movies} />
+
     </>
   )
 }

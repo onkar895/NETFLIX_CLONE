@@ -60,17 +60,27 @@ const Navbar = ({ isScrolled }) => {
           })
         }
 
-        <PowerSettingsNewIcon
+        <Box
           onClick={() => signOut(firebaseAuth)}
           sx={{
-            ml: "10px",
-            cursor: 'pointer',
-            fontSize: '25px',
+            display: 'flex',
+            marginLeft: '14px',
+
             ":hover":
-              { color: "red" }
-          }}
-          color='white'
-        />
+              { color: "red", cursor: 'pointer', }
+          }}>
+          LogOut
+          <PowerSettingsNewIcon
+            sx={{
+              ml: "5px",
+              fontSize: '23px',
+
+            }}
+
+          />
+        </Box>
+
+
 
 
       </UlStyled>
@@ -104,7 +114,7 @@ const UlStyled = styled("ul")(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   listStyle: 'none',
-  marginLeft: '10px',
+  marginLeft: '15px',
 
 
   " & > li ": {

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import Header from '../Components/Header'
-import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 
 
@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { email, password } = formValues;
-      await createUserWithEmailAndPassword(firebaseAuth, email, password)
+      await signInWithEmailAndPassword(firebaseAuth, email, password)
     } catch (err) {
       console.log(err)
     }
