@@ -47,7 +47,7 @@ export const getRawData = async (url, genres, paging) => {
   try {
     const movieArray = []
   
-    for (let i = 1; movieArray.length < 140 && i < 10; i++) {
+    for (let i = 1; movieArray.length < 240 && i < 20; i++) {
       const { data: { results } } = await axios.get(`${url}${paging ? `&page=${i}` : " "}`)
       createArrayFromRawData(results, movieArray, genres)
     }

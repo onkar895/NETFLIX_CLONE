@@ -6,6 +6,7 @@ import { styled, Box } from '@mui/material'
 const HomeBanner = () => {
   return (
     <>
+
       <Image src={HomePage} alt="HomeBannerPage" />
 
     </>

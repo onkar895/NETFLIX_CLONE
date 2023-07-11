@@ -28,7 +28,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (genresLoaded) dispatch(fetchMovies({ type: "all" }))
-  }, [])
+  }, [genresLoaded])
 
 
   window.onscroll = () => {

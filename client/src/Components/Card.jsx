@@ -127,7 +127,7 @@ display : flex;
 
 & > ul {
   display : flex;
-  gap : 1rem;
+  gap : 0.5rem;
 
   & > li {
     padding-right : 0.7rem;
@@ -174,9 +174,10 @@ const ImageVideoContainer = styled(Box)`
 position : relative;
 height : 140px;
 
+
 & > img {
   width : 100%;
-  height : 140px;
+  height : 160px;
   object-fit : cover;
   border-radius : 0.3rem;
   top : 0;
@@ -186,7 +187,7 @@ height : 140px;
 
 video {
   width : 100%;
-  height : 140px;
+  height : 160px;
   object-fit : cover;
   border-radius : 0.3rem;
   top : 0;
