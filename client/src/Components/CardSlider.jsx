@@ -12,11 +12,22 @@ export default React.memo(
     const [showControls, setShowControls] = useState(false)
     const [sliderPosition, setSliderPosition] = useState(0)
 
-    const handleDirection = (direction) => {
+    const listRef = useRef()
 
+    const handleDirection = (direction) => {
+      let distance = listRef.current.getBoundingClientRect().x - 70;
+
+      if (direction === "left" && sliderPosition > 0) {
+        listRef.current.style.transform = `translateX(${230 + distance}px)`;
+        setSliderPosition(sliderPosition - 1);
+      }
+      if (direction === "right" && sliderPosition < 4) {
+        listRef.current.style.transform = `translateX(${-230 + distance}px)`;
+        setSliderPosition(sliderPosition + 1);
+      }
     }
 
-    const listRef = useRef()
+
     return (
       <>
         <Container
@@ -91,28 +102,36 @@ const Slider = styled(Box)`
 `
 
 const Right = styled(Box)`
+display : flex;
+justify-content : center;
+align-items : center;
 position : absolute;
 z-index : 99;
-height : 100%;
-top : 50%;
+height : 75%;
+bottom : 0;
 right : 0;
 width : 50px;
 transition : 0.3s ease-in-out;
 cursor : pointer;
+
 
 svg {
   font-size : 3rem;
 }
 `
 const Left = styled(Box)`
+display : flex;
+justify-content : center;
+align-items : center;
 position : absolute;
 z-index : 99;
-height : 100%;
-top : 50%;
+height : 75%;
+bottom : 0;
 left : 0;
 width : 50px;
 transition : 0.3s ease-in-out;
 cursor : pointer;
+
 
 svg {
   font-size : 3rem;
