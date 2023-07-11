@@ -18,7 +18,7 @@ const Login = () => {
     email: "",
     password: "",
   })
-  console.log(formValues)
+  // console.log(formValues)
 
 
 

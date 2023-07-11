@@ -64,10 +64,13 @@ const Navbar = ({ isScrolled }) => {
           onClick={() => signOut(firebaseAuth)}
           sx={{
             display: 'flex',
+            alignItems: 'center',
             marginLeft: '14px',
+            color: 'red',
+            fontWeight: 'bolder',
 
             ":hover":
-              { color: "red", cursor: 'pointer', }
+              { cursor: 'pointer', }
           }}>
           LogOut
           <PowerSettingsNewIcon

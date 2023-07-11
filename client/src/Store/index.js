@@ -12,7 +12,8 @@ export const getGenres = createAsyncThunk('netflix/genres', async () => {
   try {
     const { data: { genres } } = await axios.get(
        `${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`
-       )
+    )
+    console.log(genres)
     return(genres)
   } catch (err) {
     console.log(err)
@@ -46,7 +47,7 @@ export const getRawData = async (url, genres, paging) => {
   try {
     const movieArray = []
   
-    for (let i = 1; movieArray.length < 60 && i < 10; i++) {
+    for (let i = 1; movieArray.length < 140 && i < 10; i++) {
       const { data: { results } } = await axios.get(`${url}${paging ? `&page=${i}` : " "}`)
       createArrayFromRawData(results, movieArray, genres)
     }
