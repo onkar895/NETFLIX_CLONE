@@ -9,7 +9,7 @@ const Slider = ({ movies }) => {
   const getMoviesFromRange = (from, to) => {
     return movies.slice(from, to)
   }
-  console.log(movies)
+  // console.log(movies)
   return (
 
     <>
@@ -37,7 +37,6 @@ const Slider = ({ movies }) => {
 
 const Container = styled(Box)`
 width : 100vw;
-overflow : hidden;
 `
 
 export default Slider

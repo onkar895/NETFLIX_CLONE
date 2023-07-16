@@ -1,3 +1,6 @@
 export { default as Login } from './Login'
 export { default as SignUp } from './SignUp'
 export { default as HomePage } from './HomePage'
+export { default as Movies } from './Movies'
+export { default as TvShows } from './TvShows'
+export { default as UserLikedMovies } from './UserLikedMovies'

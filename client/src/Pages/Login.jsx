@@ -135,7 +135,7 @@ const Login = () => {
           </Box>
 
           <SignLink
-            onClick={() => navigate('/signup')} href="#">
+            onClick={() => navigate('/')} href="#">
             Sign Up Now
           </SignLink>
 
@@ -160,12 +160,11 @@ const Form = styled("form")`
  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 background: rgba(0,0,0,0.7);
 border-radius : 8px;
-width : 30vw;
-height : 82vh;
 display : flex;
 flex-direction : column;
-margin : 90px 0 0 35px;
-padding : 30px;
+margin : 90px 0 20px 35px;
+padding : 40px 50px;
+
 
 & input {
   color : white;

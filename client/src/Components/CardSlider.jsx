@@ -13,6 +13,7 @@ export default React.memo(
     const [sliderPosition, setSliderPosition] = useState(0)
 
     const listRef = useRef()
+    //  When you need to interact with a specific DOM element, you can use useRef() to create a reference to it. This allows you to access and modify its properties or invoke methods. For example, you can use useRef() to get the value of an input field or focus on an element programmatically.
 
     const handleDirection = (direction) => {
       let distance = listRef.current.getBoundingClientRect().x - 70;

@@ -55,7 +55,6 @@ const SignUp = () => {
 
         <Header login />
 
-
         <Box
           sx={{
             position: 'absolute',
@@ -122,12 +121,12 @@ const SignUp = () => {
         </Form>
 
 
-        <Button
+        <ButtonContainer
           onClick={handleSignUp}
-          sx={{ margin: "15px 0", padding: '15px', width: '10vw' }}
           color="error"
           variant="contained"
-        >Sign Up</Button>
+        >Sign Up
+        </ButtonContainer>
 
 
 
@@ -163,30 +162,52 @@ flex-direction:column;
     margin:10px 0;
 }
 `
-const HeaderBox = styled(Box)`
- font-family:  "Trebuchet MS",
-            "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-display : flex;
-flex-direction : column;
-align-items : center;
-margin-top : 100px;
-`
-const Form = styled("form")`
- font-family:  "Trebuchet MS",
-            "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-display: flex;
-;
+const HeaderBox = styled(Box)(({ theme }) => ({
+  fontFamily: "Trebuchet MS",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  marginTop: '100px',
+  [theme.breakpoints.down('lg')]: {
+    width: '100vw'
+  },
 
-& input{
-  margin-top : 10px;
-  padding: 1.5rem;
-  outline: none;
-  width: 25vw;
-  border: 1px solid white;
-  font - size: 1.5rem;
- background-color: rgba(0,0,0,0.3);
-}
-`
+}))
+
+
+
+const Form = styled("form")(({ theme }) => ({
+
+  fontFamily: "Trebuchet MS",
+  display: 'flex',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    height: '30px',
+  },
+
+  "& input": {
+    marginTop: '10px',
+    padding: '1.5rem 4rem',
+    outline: 'none',
+    border: '1px solid white',
+    fontSize: '1rem',
+    backgroundolor: 'rgba(0, 0, 0, 0.3)',
+    [theme.breakpoints.down('sm')]: {
+      width: '80vw'
+    },
+  },
+}))
+
+const ButtonContainer = styled(Button)(({ theme }) => ({
+  margin: "15px 0",
+  padding: '15px 25px',
+  [theme.breakpoints.down('sm')]: {
+    marginTop: '130px',
+
+  }
+
+}))
+
 
 export default SignUp
 

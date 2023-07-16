@@ -10,13 +10,30 @@ import { PlayArrow } from '@mui/icons-material'
 import { ThumbUp, ThumbDown } from '@mui/icons-material'
 import { Check, Add } from '@mui/icons-material'
 import { KeyboardArrowDown } from '@mui/icons-material'
-
+import { onAuthStateChanged } from 'firebase/auth'
+import { firebaseAuth } from '../Utils/firebase-config'
+import axios from 'axios'
 
 export default React.memo(
   function Card({ movieData, isLiked = false }) {
 
     const [isHovered, setIsHovered] = useState(false)
+    const [email, setEmail] = useState(undefined)
     const navigate = useNavigate()
+
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if (currentUser) setEmail(currentUser.email)
+      else navigate('/')
+    })
+
+    const addToList = async () => {
+      try {
+        await axios.post("http://localhost:8000/api/user/add",
+          { email, data: movieData })
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     return (
       <>
@@ -63,7 +80,7 @@ export default React.memo(
 
                           <Check title="remove from my list" />
                         ) : (
-                          <Add title="add to my list " />
+                          <Add title="add to my list " onClick={addToList} />
 
                         )
                       }

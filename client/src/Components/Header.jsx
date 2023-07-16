@@ -24,11 +24,11 @@ const Header = ({ login }) => {
         {
           login &&
           (
-            <Button sx={{ marginRight: '20px' }}
+            <Button sx={{ marginRight: '20px', marginBottom: '10px' }}
               variant="contained"
               color="error"
               size='large'
-              onClick={() => navigate('/')}> Sign In
+              onClick={() => navigate('/login')}> Sign In
             </Button>
           )
         }

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import HomePage from '../assets/home.jpg'
-import { styled, Box } from '@mui/material'
+import HomePage from '../assets/scoob.jpg'
+import { styled } from '@mui/material'
 
 const HomeBanner = () => {
   return (
@@ -22,6 +22,9 @@ z-index : -1;
 width : 100vw;
 height : 100vh;
 object-fit : cover;
+background-repeat : no-repeat;
+background-attachment : fixed;
+background-position : center;
 filter : brightness(50%);
 `
 

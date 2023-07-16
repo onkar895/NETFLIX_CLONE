@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import HomeBanner from '../Components/HomeBanner'
-import Netflix_Image from '../assets/homeTitle.webp'
-import { Box, Button, styled } from '@mui/material'
+import Image from '../assets/Whats_new.png'
+import { Box, Button, Typography, styled } from '@mui/material'
 import { InfoOutlined, PlayArrow } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,7 +46,11 @@ const HomePage = () => {
 
         <Container>
 
-          <Image src={Netflix_Image} alt="ImageOfNetflixlogo" />
+          <TitleBox>
+            <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>Scooby-Doo</Typography>
+            <img src={Image} alt="What;s New Scoob" />
+          </TitleBox>
+
 
           <ButtonContainer>
 
@@ -95,6 +99,16 @@ const HomePage = () => {
 
           </ButtonContainer>
 
+          <InfoContainer>
+            <Typography>
+              Scoob and the gang face a new mystery when they are lured to Spooky Island,
+            </Typography>
+            <Typography>
+              where a sinister force is brainwashing partying college kids into a dark cult.
+            </Typography>
+            <Typography>Watch all you want.</Typography>
+          </InfoContainer>
+
         </Container>
 
       </HomeContainer>
@@ -113,19 +127,53 @@ height : 100vh;
 
 const Container = styled(Box)`
 position: absolute; 
-bottom: 100px;
+bottom: 80px;
 left: 35px;
 `
 
-const Image = styled("img")(({ theme }) => ({
-  width: "40rem"
+const TitleBox = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+
+
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'Column',
+  },
+
+  "& > p": {
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '40px'
+    },
+  },
+
+  "& > img": {
+    width: '15vw',
+    [theme.breakpoints.down('sm')]: {
+      width: '28vw',
+      marginBottom: '10px',
+    },
+  }
+
 }))
 
 const ButtonContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: '8px',
   alignItems: 'center',
-  marginTop: '10px',
+  [theme.breakpoints.down('sm')]: {
+    width: "80vw",
+  },
+}))
+
+const InfoContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  marginTop: '20px',
+
+  "& > p": {
+    fontFamily: "Trebuchet MS",
+  }
 }))
 
 

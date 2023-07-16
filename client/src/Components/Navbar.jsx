@@ -6,6 +6,7 @@ import { styled, Box, Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu, Close } from '@mui/icons-material'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import SearchIcon from '@mui/icons-material/Search';
 import { signOut } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -26,6 +27,7 @@ const Navbar = ({ isScrolled }) => {
     if (!currentUser) navigate('/')
   })
 
+
   const [showMenu, setShowMenu] = useState(false)
 
   return (
@@ -36,12 +38,12 @@ const Navbar = ({ isScrolled }) => {
     >
 
       <Container>
-        <img src={Logo} alt="Netflix_Logo" width={150} />
+        <img src={Logo} alt="Netflix_Logo" width={160} />
         <Button
           variant='contained'
           color='error'
           size='small'
-          sx={{ display: { md: 'block', lg: 'none !important' } }}
+          sx={{ display: { md: 'block', lg: 'none !important', paddingTop: '8px' } }}
           onClick={() => setShowMenu(!showMenu)}>
           {
             showMenu ? <Close /> : <Menu />
@@ -60,39 +62,28 @@ const Navbar = ({ isScrolled }) => {
           })
         }
 
-        <Box
-          onClick={() => signOut(firebaseAuth)}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            marginLeft: '14px',
-            color: 'red',
-            fontWeight: 'bolder',
-
-            ":hover":
-              { cursor: 'pointer', }
-          }}>
-          LogOut
-          <PowerSettingsNewIcon
-            sx={{
-              ml: "5px",
-              fontSize: '23px',
-
-            }}
-
-          />
-        </Box>
-
-
-
 
       </UlStyled>
+
+
+      <LogOutContainer
+        onClick={() => signOut(firebaseAuth)}
+      >
+        LogOut
+        <PowerSettingsNewIcon
+          sx={{
+            ml: "5px",
+            fontSize: '23px',
+          }}
+        />
+      </LogOutContainer>
 
     </NavbarContainer>
   )
 }
 
 const NavbarContainer = styled(Box)(({ theme }) => ({
+  fontFamily: "Trebuchet MS",
   display: 'flex',
   position: 'fixed',
   top: '0',
@@ -137,6 +128,23 @@ const UlStyled = styled("ul")(({ theme }) => ({
       margin: "15px",
     }
   }
+}))
+
+const LogOutContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: '38rem',
+  color: 'red',
+  fontWeight: 'bolder',
+  padding: '5px 10px',
+  borderRadius: '3px',
+  [theme.breakpoints.down("lg")]: {
+    marginLeft: '1.2rem',
+    marginTop: '0.5rem',
+  },
+
+  ":hover":
+    { cursor: 'pointer', background: 'red', color: 'white' },
 }))
 
 export default Navbar
