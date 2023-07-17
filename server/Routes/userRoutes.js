@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { addToLikeMovies, getLikedMovies } from '../Controllers/userController.js'
+import { addToLikedMovies, getLikedMovies } from '../Controllers/userController.js'
 
 const router = Router()
 
-router.post('/add', addToLikeMovies)
+router.post('/add', addToLikedMovies)
 router.get('/liked/:email', getLikedMovies)
 
 export default router
