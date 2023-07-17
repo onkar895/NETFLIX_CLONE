@@ -47,7 +47,7 @@ const HomePage = () => {
         <Container>
 
           <TitleBox>
-            <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>Scooby-Doo</Typography>
+            <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>ScooBy-Doo</Typography>
             <img src={Image} alt="What;s New Scoob" />
           </TitleBox>
 
@@ -115,6 +115,11 @@ const HomePage = () => {
 
       <Slider movies={movies} />
 
+
+      <FooterContainer>
+        <h4>Created for education purpose using React-Redux by Omkar Karale @ July 2023</h4>
+      </FooterContainer>
+
     </>
   )
 }
@@ -176,5 +181,14 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   }
 }))
 
+const FooterContainer = styled(Box)`
+display : flex;
+justify-content : center;
+align-items : center;
+margin : 10px;
+padding : 10px;
+background : red;
+border-radius : 3px;
 
+`
 export default HomePage

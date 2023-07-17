@@ -12,13 +12,13 @@ function App() {
 
         <Routes>
 
+          <Route exact path='/' element={<SignUp />}></Route>
           <Route exact path='/login' element={<Login />}></Route>
-          <Route path='/' element={<SignUp />}></Route>
-          <Route path='/home' element={<HomePage />}></Route>
-          <Route path='/video' element={<VideoPlayer />} />
-          <Route path='/movies' element={<Movies />} />
-          <Route path='/tv' element={<TvShows />} />
-          <Route path='/mylist' element={<UserLikedMovies />} />
+          <Route exact path='/home' element={<HomePage />}></Route>
+          <Route exact path='/video' element={<VideoPlayer />} />
+          <Route exact path='/movies' element={<Movies />} />
+          <Route exact path='/tv' element={<TvShows />} />
+          <Route exact path='/mylist' element={<UserLikedMovies />} />
 
 
         </Routes>

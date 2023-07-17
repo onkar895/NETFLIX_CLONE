@@ -22,7 +22,7 @@ export default React.memo(
         listRef.current.style.transform = `translateX(${400 + distance}px)`;
         setSliderPosition(sliderPosition - 1);
       }
-      if (direction === "right" && sliderPosition < 4) {
+      if (direction === "right" && sliderPosition < 3) {
         listRef.current.style.transform = `translateX(${-280 + distance}px)`;
         setSliderPosition(sliderPosition + 1);
       }

@@ -52,7 +52,7 @@ export const getRawData = async (url, genres, paging) => {
     const movieArray = []
   
     for (let i = 1; movieArray.length < 130 && i < 10; i++) {
-      const { data: { results } } = await axios.get(`${url}${paging ? `&page=${i}` : " "}`)
+      const { data: { results }, } = await axios.get(`${url}${paging ? `&page=${i}` : " "}`)
       createArrayFromRawData(results, movieArray, genres)
     }
     return movieArray
@@ -84,8 +84,8 @@ export const fetchMovies = createAsyncThunk("netflix/trending", async ({type}, t
 
 export const getUserLikedMovies = createAsyncThunk('netflix/getLiked', async (email) => {
   try {
-    const { data } = await axios.get(`http://localhost:8000/api/user/liked/${email}`)
-    console.log(data)
+    const { data : {movies}, } = await axios.get(`http://localhost:8000/api/user/liked/${email}`)
+    return movies
   } catch (err) {
     console.log("error while getting the user liked movies", err)
   }

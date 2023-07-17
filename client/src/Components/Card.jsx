@@ -116,8 +116,8 @@ export default React.memo(
   })
 
 const Container = styled(Box)`
-max-width : 220px;
-width : 220px;
+max-width : 200px;
+width : 200px;
 height : 100%;
 cursor : pointer;
 position : relative;

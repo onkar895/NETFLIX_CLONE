@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
@@ -13,10 +14,11 @@ const UserLikedMovies = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [email, setEmail] = useState(undefined);
-
   const movies = useSelector((state) => state.netflix.movies)
+
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [email, setEmail] = useState(undefined)
+
   // console.log(movies)
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
@@ -33,7 +35,6 @@ const UserLikedMovies = () => {
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true)
-    return () => (window.onscroll = null);
   }
 
   return (
@@ -44,13 +45,16 @@ const UserLikedMovies = () => {
       <h1>My List</h1>
 
       <GridContainer>
-
-        {
-          movies.map((movie, index) => (
-            <Card key={movie.id} index={index} movieData={movie} isLiked={true} />
-          ))
-        }
-
+        {movies.map((movie, index) => {
+          return (
+            <Card
+              key={movie.id}
+              index={index}
+              movieData={movie}
+              isLiked={true}
+            />
+          );
+        })}
       </GridContainer>
 
     </Container>
