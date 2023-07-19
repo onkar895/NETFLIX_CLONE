@@ -8,7 +8,12 @@ const initialState = {
   genresLoaded: false,
   genres: []
 }
-// It defines the initial state for the Redux store. 
+// It defines the initial state for the Redux store.
+
+export const getVideo = async (id) => {
+  const { data } = await axios.get(`${TMDB_BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`)
+  return data;
+}
 
 export const getGenres = createAsyncThunk('netflix/genres', async () => {
   try {

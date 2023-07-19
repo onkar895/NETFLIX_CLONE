@@ -191,7 +191,7 @@ const Form = styled("form")(({ theme }) => ({
     outline: 'none',
     border: '1px solid white',
     fontSize: '1rem',
-    backgroundolor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     [theme.breakpoints.down('sm')]: {
       width: '80vw'
     },

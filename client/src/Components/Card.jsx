@@ -2,10 +2,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { Box, styled } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import video from '../assets/video.mp4'
+import Scoobvideo from '../assets/video.mp4'
+import { getVideo } from '../Store'
 import { PlayArrow } from '@mui/icons-material'
 import { ThumbUp, ThumbDown } from '@mui/icons-material'
 import { Check, Add } from '@mui/icons-material'
@@ -13,6 +14,7 @@ import { KeyboardArrowDown } from '@mui/icons-material'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import axios from 'axios'
+import Youtube from 'react-youtube'
 
 export default React.memo(
   function Card({ movieData, isLiked = false }) {
@@ -20,6 +22,18 @@ export default React.memo(
     const [isHovered, setIsHovered] = useState(false)
     const [email, setEmail] = useState(undefined)
     const navigate = useNavigate()
+    const [videoName, setVideoName] = useState(' ')
+
+    useEffect(() => {
+      video()
+    })
+
+    const video = async () => {
+      const data = await getVideo(movieData.id)
+      let url = data.videos.results.find((vid) => vid.name === 'Official Trailer',
+      )
+      setVideoName(url.key)
+    }
 
     onAuthStateChanged(firebaseAuth, (currentUser) => {
       if (currentUser) setEmail(currentUser.email)
@@ -53,38 +67,42 @@ export default React.memo(
                     src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt='movie'
                     onClick={() => navigate('/video')} />
 
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    controls
-                    src={video} />
+                  {
+                    videoName ? (
+                      <Youtube
+                        videoId={videoName} />
+                    ) : (
+                      <video src={Scoobvideo}
+                        onClick={() => navigate('/video')} autoPlay />
+                    )
+                  }
+
 
                 </ImageVideoContainer>
 
                 <InfoContainer>
-                  <h3 onClick={() => navigate('/video')}>{movieData.name}</h3>
+                  <h3>{movieData.name}</h3>
 
                   <Icons>
 
                     <Box>
 
-                      <PlayArrow onClick={() => navigate('/video')} title="play"
+                      <PlayArrow title="play"
                       />
 
                       <ThumbUp title="like" />
 
                       <ThumbDown title="dislike" />
+
                       {
                         isLiked ? (
 
                           <Check title="remove from my list" />
                         ) : (
-                          <Add title="add to my list " onClick={addToList} />
 
+                          <Add title="add to my list " onClick={addToList} />
                         )
                       }
-
                     </Box>
 
                     <Info>
@@ -202,7 +220,7 @@ height : 140px;
   position : absolute;
 }
 
-video {
+video, iframe {
   width : 100%;
   height : 160px;
   object-fit : cover;

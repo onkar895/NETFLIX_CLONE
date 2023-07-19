@@ -45,7 +45,7 @@ const UserLikedMovies = () => {
       <h1>My List</h1>
 
       <GridContainer>
-        {movies.map((movie, index) => {
+        {movies?.map((movie, index) => {
           return (
             <Card
               key={movie.id}
@@ -55,6 +55,7 @@ const UserLikedMovies = () => {
             />
           );
         })}
+
       </GridContainer>
 
     </Container>
