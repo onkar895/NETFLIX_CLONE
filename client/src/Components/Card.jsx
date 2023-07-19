@@ -199,7 +199,7 @@ position : absolute;
 width : 20rem;
 top : -18vh;
 left : 0;
-border-radius : 0.3rem;
+border-radius : 0.4rem;
 box-shadow : rgba(0,0,0,0.8) 0px 3px 10px;
 background : #181818;
 transition : 0.3s ease-in-out;
