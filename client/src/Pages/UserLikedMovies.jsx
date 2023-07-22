@@ -9,76 +9,71 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import { getUserLikedMovies } from '../Store'
 import Card from '../Components/Card'
+import NotAvailable from '../Components/NotAvailable'
+
 
 const UserLikedMovies = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => state.netflix.movies);
+  const [email, setEmail] = useState(undefined);
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const movies = useSelector((state) => state.netflix.movies)
 
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [email, setEmail] = useState(undefined)
-
-  // console.log(movies)
-
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => window.onscroll = null
+  }
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) setEmail(currentUser.email);
-    else navigate('/')
-  })
+    else navigate("/")
+  });
 
 
   useEffect(() => {
     if (email) {
-      dispatch(getUserLikedMovies(email));
+      dispatch(getUserLikedMovies(email))
     }
   }, [email]);
 
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true)
-  }
 
   return (
-    <Container>
-
+    <Box>
       <Navbar isScrolled={isScrolled} />
-
-      <h1>My List</h1>
-
-      <GridContainer>
-        {movies?.map((movie, index) => {
-          return (
-            <Card
-              key={movie.id}
-              index={index}
-              movieData={movie}
-              isLiked={true}
-            />
-          );
-        })}
-
-      </GridContainer>
-
-    </Container>
-
+      {
+        movies?.length <= 0 ? (
+          <NotAvailable text='No movies added to my list' />
+        ) : (
+          <Content>
+            <h1>My List</h1>
+            <MoviesContainer>
+              {
+                movies?.map((movie, index) => {
+                  return <Card movieData={movie} index={index} key={movie.id} isLiked={true} />
+                })
+              }
+            </MoviesContainer>
+          </Content>
+        )
+      }
+    </Box>
   )
-
 }
 
-const Container = styled(Box)`
-  margin:2.3rem;
-  margin-top:8rem;
-  gap:3rem;
-
-  & < h1 {
-    margin-left:3rem;
-  }
+const Content = styled(Box)`
+dispaly:flex;
+flex-direction:column;
+margin:2.3rem;
+margin-top:8rem;
+gap:3rem;
+h1{
+    margin-left:4rem
+}
 `
-
-const GridContainer = styled(Box)`
+const MoviesContainer = styled(Box)`
+display:flex;
 flex-wrap:wrap;
 gap:1rem;
-
 `
-
 
 export default UserLikedMovies

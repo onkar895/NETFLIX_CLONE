@@ -96,6 +96,16 @@ export const getUserLikedMovies = createAsyncThunk('netflix/getLiked', async (em
   }
 })
 
+export const removeFromLikedMovies = createAsyncThunk("netflix/removeLoked", async ({ movieId, email }) => {
+    try {
+        const { data: { movies } } = await axios.put('http://localhost:8000/api/user/remove', { email, movieId });
+        return movies;
+    } catch (error) {
+        console.log(error, 'error while calling remove from liked movies api')
+    }
+})
+
+
 const NetflixSlice = createSlice({
   name: 'Netflix',
   initialState,
