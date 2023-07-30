@@ -15,6 +15,7 @@ export const getVideo = async (id) => {
   return data;
 }
 
+
 export const getGenres = createAsyncThunk('netflix/genres', async () => {
   try {
     const { data: { genres } } = await axios.get(
@@ -89,14 +90,14 @@ export const fetchMovies = createAsyncThunk("netflix/trending", async ({type}, t
 
 export const getUserLikedMovies = createAsyncThunk('netflix/getLiked', async (email) => {
   try {
-    const { data : {movies}, } = await axios.get(`http://localhost:8000/api/user/liked/${email}`)
+    const { data : {movies} } = await axios.get(`http://localhost:8000/api/user/liked/${email}`)
     return movies
   } catch (err) {
     console.log("error while getting the user liked movies", err)
   }
 })
 
-export const removeFromLikedMovies = createAsyncThunk("netflix/removeLoked", async ({ movieId, email }) => {
+export const removeFromLikedMovies = createAsyncThunk("netflix/removeLiked", async ({ movieId, email }) => {
     try {
         const { data: { movies } } = await axios.put('http://localhost:8000/api/user/remove', { email, movieId });
         return movies;
@@ -123,7 +124,9 @@ const NetflixSlice = createSlice({
     builders.addCase(getUserLikedMovies.fulfilled,(state, action) => {
   state.movies = action.payload
     })
-
+     builders.addCase(removeFromLikedMovies.fulfilled,(state, action) => {
+  state.movies = action.payload
+     })
   }
 })
 // This creates a Redux slice named NetflixSlice using the createSlice function. It defines the name of the slice, the initial state, and the extraReducers object. The extraReducers object handles different Redux actions. In this case, it has three cases: getGenres.fulfilled, fetchMovies.fulfilled, and fetchDataByGenre.fulfilled. Each case updates the relevant properties of the state based on the payload of the fulfilled action.

@@ -48,7 +48,7 @@ const HomePage = () => {
 
           <TitleBox>
             <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>ScooBy-Doo</Typography>
-            <img src={Image} alt="What;s New Scoob" />
+            <img src={Image} alt="What's New Scoob" />
           </TitleBox>
 
 
@@ -143,6 +143,7 @@ const TitleBox = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'Column',
+    marginRight: '2rem'
   },
 
   "& > p": {

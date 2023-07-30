@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import Logo from '../assets/logo.png'
+import avatar from '../assets/avatar.png'
 import { styled, Box, Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu, Close } from '@mui/icons-material'
@@ -10,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { signOut } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import { onAuthStateChanged } from 'firebase/auth'
+
 
 
 const Navbar = ({ isScrolled }) => {
@@ -65,18 +67,30 @@ const Navbar = ({ isScrolled }) => {
 
       </UlStyled>
 
+      <AvatarContainer>
 
-      <LogOutContainer
-        onClick={() => signOut(firebaseAuth)}
-      >
-        LogOut
-        <PowerSettingsNewIcon
-          sx={{
-            ml: "5px",
-            fontSize: '23px',
-          }}
-        />
-      </LogOutContainer>
+        <img src={avatar} alt="Avatar" />
+        <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginLeft: '8px', fontWeight: 'bold' }}>
+          Search
+          <SearchIcon sx={{ marginLeft: '5px', marginTop: '4px', color: 'white', fontSize: '24px', }} />
+        </Box>
+
+
+
+        <LogOutContainer
+          onClick={() => signOut(firebaseAuth)}>
+          LogOut
+          <PowerSettingsNewIcon
+            sx={{
+              ml: "5px",
+              fontSize: '23px',
+            }}
+          />
+        </LogOutContainer>
+
+      </AvatarContainer>
+
+
 
     </NavbarContainer>
   )
@@ -130,21 +144,52 @@ const UlStyled = styled("ul")(({ theme }) => ({
   }
 }))
 
+
+const AvatarContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: '30rem',
+  gap: '10px',
+  [theme.breakpoints.down("lg")]: {
+    flexDirection: 'column',
+    marginLeft: '1.3rem',
+    marginTop: '0.5rem',
+  },
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: 'column',
+    marginRight: '8.8rem',
+    marginTop: '0.8rem',
+  },
+
+  "& > img": {
+    width: '2.5vw',
+    marginRight: '5px',
+    [theme.breakpoints.down("lg")]: {
+      display: 'none'
+    },
+  },
+
+
+}))
+
+
 const LogOutContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '38rem',
   color: 'red',
   fontWeight: 'bolder',
   padding: '5px 10px',
   borderRadius: '3px',
-  [theme.breakpoints.down("lg")]: {
-    marginLeft: '1.2rem',
-    marginTop: '0.5rem',
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: '0.6rem',
+    marginTop: '0.6rem',
   },
 
   ":hover":
     { cursor: 'pointer', background: 'red', color: 'white' },
+
 }))
+
+
 
 export default Navbar

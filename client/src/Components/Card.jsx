@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Scoobvideo from '../assets/video.mp4'
-import { getVideo } from '../Store'
+import { getVideo, removeFromLikedMovies } from '../Store'
 import { PlayArrow } from '@mui/icons-material'
 import { ThumbUp, ThumbDown } from '@mui/icons-material'
 import { Check, Add } from '@mui/icons-material'
@@ -15,6 +15,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import axios from 'axios'
 import Youtube from 'react-youtube'
+import { useDispatch } from 'react-redux'
 
 export default React.memo(
   function Card({ movieData, isLiked = false }) {
@@ -23,15 +24,16 @@ export default React.memo(
     const [email, setEmail] = useState(undefined)
     const navigate = useNavigate()
     const [videoName, setVideoName] = useState(' ')
+    const dispatch = useDispatch()
 
     useEffect(() => {
       video()
     })
 
+
     const video = async () => {
       const data = await getVideo(movieData.id)
-      let url = data.videos.results.find((vid) => vid.name === 'Official Trailer',
-      )
+      let url = data.videos.results.find((vid) => vid.name === 'Official Trailer')
       setVideoName(url.key)
     }
 
@@ -68,15 +70,14 @@ export default React.memo(
                     onClick={() => navigate('/video')} />
 
                   {
-                    videoName ? (
-                      <Youtube
-                        videoId={videoName} />
-                    ) : (
+                    !videoName ? (
                       <video src={Scoobvideo}
                         onClick={() => navigate('/video')} autoPlay />
+                    ) : (
+                      <Youtube
+                        videoId={videoName} />
                     )
                   }
-
 
                 </ImageVideoContainer>
 
@@ -97,7 +98,7 @@ export default React.memo(
                       {
                         isLiked ? (
 
-                          <Check title="remove from my list" />
+                          <Check title="remove from my list" onClick={() => dispatch(removeFromLikedMovies({ movieId: movieData.id, email }))} />
                         ) : (
 
                           <Add title="add to my list " onClick={addToList} />
