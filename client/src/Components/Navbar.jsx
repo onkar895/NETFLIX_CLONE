@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Logo from '../assets/logo.png'
 import avatar from '../assets/avatar.png'
-import { styled, Box, Button } from '@mui/material'
+import { styled, Box, Button, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu, Close } from '@mui/icons-material'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
@@ -75,11 +75,9 @@ const Navbar = ({ isScrolled }) => {
           <SearchIcon sx={{ marginLeft: '5px', marginTop: '4px', color: 'white', fontSize: '24px', }} />
         </Box>
 
-
-
         <LogOutContainer
           onClick={() => signOut(firebaseAuth)}>
-          LogOut
+          <Typography>LogOut</Typography>
           <PowerSettingsNewIcon
             sx={{
               ml: "5px",
@@ -148,7 +146,7 @@ const UlStyled = styled("ul")(({ theme }) => ({
 const AvatarContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '30rem',
+  marginLeft: '28.5rem',
   gap: '10px',
   [theme.breakpoints.down("lg")]: {
     flexDirection: 'column',
@@ -163,7 +161,7 @@ const AvatarContainer = styled(Box)(({ theme }) => ({
 
   "& > img": {
     width: '2.5vw',
-    marginRight: '5px',
+    marginRight: '8px',
     [theme.breakpoints.down("lg")]: {
       display: 'none'
     },
@@ -183,6 +181,11 @@ const LogOutContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     marginLeft: '0.6rem',
     marginTop: '0.6rem',
+  },
+
+  "& > p": {
+    fontWeight: 'bolder',
+    fontFamily: "Trebuchet MS",
   },
 
   ":hover":

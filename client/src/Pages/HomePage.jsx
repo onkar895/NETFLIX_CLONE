@@ -106,7 +106,7 @@ const HomePage = () => {
             <Typography>
               where a sinister force is brainwashing partying college kids into a dark cult.
             </Typography>
-            <Typography>Watch all you want.</Typography>
+            <Typography>Watch all you want</Typography>
           </InfoContainer>
 
         </Container>
