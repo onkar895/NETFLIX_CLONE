@@ -21,6 +21,10 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 body {
     overflow-x: hidden;
     margin: 0;

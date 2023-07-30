@@ -14,18 +14,20 @@ const HomeBanner = () => {
   )
 }
 
-const Image = styled("img")`
-position : absolute;
-top : 0;
-left : 0;
-z-index : -1;
-width : 100vw;
-height : 100vh;
-object-fit : cover;
-background-repeat : no-repeat;
-background-attachment : fixed;
-background-position : center;
-filter : brightness(50%);
-`
+const Image = styled("img")(({ theme }) => ({
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  zIndex: '-1',
+  width: '100vw',
+  height: '100vh',
+  objectfit: 'cover',
+  backgroundRepeat: 'no - repeat',
+  backgroundAttachment: 'fixed',
+  backgroundPosition: 'center',
+  filter: 'brightness(50%)',
+}))
+
+
 
 export default HomeBanner

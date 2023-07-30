@@ -146,11 +146,11 @@ const UlStyled = styled("ul")(({ theme }) => ({
 const AvatarContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '28.5rem',
+  marginLeft: '29.6rem',
   gap: '10px',
   [theme.breakpoints.down("lg")]: {
     flexDirection: 'column',
-    marginLeft: '1.3rem',
+    marginLeft: '3rem',
     marginTop: '0.5rem',
   },
   [theme.breakpoints.down("sm")]: {

@@ -81,6 +81,7 @@ const HomePage = () => {
               variant='contained'
               size='large'
               sx={{
+                gap: '4px',
                 width: '8rem',
                 height: '46px',
                 background: 'rgba(225,225,225,0.6)',
@@ -93,7 +94,7 @@ const HomePage = () => {
                 }
               }}
             >
-              Info &nbsp;
+              Info
               <InfoOutlined style={{ fontSize: 22 }} />
             </Button>
 
@@ -140,24 +141,23 @@ const TitleBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
 
-
   [theme.breakpoints.down('sm')]: {
-    flexDirection: 'Column',
-    marginRight: '2rem'
+    marginRight: '2rem',
+    marginBottom: '1rem'
   },
 
   "& > p": {
 
     [theme.breakpoints.down('sm')]: {
-      fontSize: '40px'
+      fontSize: '22px'
     },
   },
 
   "& > img": {
-    width: '15vw',
+    width: '10vw',
     [theme.breakpoints.down('sm')]: {
       width: '28vw',
-      marginBottom: '10px',
+      marginTop: '6px',
     },
   }
 
