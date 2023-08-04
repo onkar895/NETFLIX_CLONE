@@ -53,42 +53,41 @@ const Navbar = ({ isScrolled }) => {
         </Button>
       </Container>
 
-      <UlStyled>
-        {
-          links.map(({ link, name }) => {
-            return (
-              <li key={name}>
-                <Link to={link}>{name}</Link>
-              </li>
-            )
-          })
-        }
+      <HeaderContainer>
+        <UlStyled>
+          {
+            links.map(({ link, name }) => {
+              return (
+                <li key={name}>
+                  <Link to={link}>{name}</Link>
+                </li>
+              )
+            })
+          }
 
+        </UlStyled>
 
-      </UlStyled>
+        <AvatarContainer>
 
-      <AvatarContainer>
+          <img src={avatar} alt="Avatar" />
+          <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginLeft: '8px', fontWeight: 'bold' }}>
+            Search
+            <SearchIcon sx={{ marginLeft: '5px', marginTop: '4px', color: 'white', fontSize: '24px', }} />
+          </Box>
 
-        <img src={avatar} alt="Avatar" />
-        <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginLeft: '8px', fontWeight: 'bold' }}>
-          Search
-          <SearchIcon sx={{ marginLeft: '5px', marginTop: '4px', color: 'white', fontSize: '24px', }} />
-        </Box>
+          <LogOutContainer
+            onClick={() => signOut(firebaseAuth)}>
+            <Typography>LogOut</Typography>
+            <PowerSettingsNewIcon
+              sx={{
+                ml: "5px",
+                fontSize: '23px',
+              }}
+            />
+          </LogOutContainer>
 
-        <LogOutContainer
-          onClick={() => signOut(firebaseAuth)}>
-          <Typography>LogOut</Typography>
-          <PowerSettingsNewIcon
-            sx={{
-              ml: "5px",
-              fontSize: '23px',
-            }}
-          />
-        </LogOutContainer>
-
-      </AvatarContainer>
-
-
+        </AvatarContainer>
+      </HeaderContainer>
 
     </NavbarContainer>
   )
@@ -101,12 +100,22 @@ const NavbarContainer = styled(Box)(({ theme }) => ({
   top: '0',
   width: '100vw',
   alignItems: 'center',
-  justifyContent: 'start',
   padding: '1rem 1.5rem',
   overflow: 'hidden',
   [theme.breakpoints.down('lg')]: {
     display: 'block',
 
+  }
+}))
+
+const HeaderContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flex: '2',
+  justifyContent: 'space-between',
+  marginLeft: '15px',
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'start',
+    flexDirection: 'column'
   }
 }))
 
@@ -125,7 +134,6 @@ const UlStyled = styled("ul")(({ theme }) => ({
 
   " & > li ": {
     margin: '0 15px',
-
   },
 
   "& a": {
@@ -146,18 +154,18 @@ const UlStyled = styled("ul")(({ theme }) => ({
 const AvatarContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '29.6rem',
   gap: '10px',
-  [theme.breakpoints.down("lg")]: {
+  marginLeft: '22px',
+  [theme.breakpoints.down("md")]: {
     flexDirection: 'column',
-    marginLeft: '3rem',
-    marginTop: '0.5rem',
+    alignItems: 'start',
+    marginTop: '0.3rem',
   },
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: 'column',
-    marginRight: '8.8rem',
-    marginTop: '0.8rem',
+
+  "& > *": {
+    marginTop: '0.6rem',
   },
+
 
   "& > img": {
     width: '2.5vw',
@@ -176,12 +184,8 @@ const LogOutContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   color: 'red',
   fontWeight: 'bolder',
-  padding: '5px 10px',
+  padding: '5px 8px',
   borderRadius: '3px',
-  [theme.breakpoints.down("sm")]: {
-    marginLeft: '0.6rem',
-    marginTop: '0.6rem',
-  },
 
   "& > p": {
     fontWeight: 'bolder',
