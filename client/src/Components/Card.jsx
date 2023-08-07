@@ -9,13 +9,15 @@ import Scoobvideo from '../assets/video.mp4'
 import { getVideo, removeFromLikedMovies } from '../Store'
 import { PlayArrow } from '@mui/icons-material'
 import { ThumbUp, ThumbDown } from '@mui/icons-material'
-import { Check, Add } from '@mui/icons-material'
+import CloseIcon from '@mui/icons-material/Close';
+import { Add } from '@mui/icons-material'
 import { KeyboardArrowDown } from '@mui/icons-material'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../Utils/firebase-config'
 import axios from 'axios'
 import Youtube from 'react-youtube'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 export default React.memo(
   function Card({ movieData, isLiked = false }) {
@@ -30,11 +32,10 @@ export default React.memo(
       video()
     })
 
-
     const video = async () => {
       const data = await getVideo(movieData.id)
-      let url = data.videos.results.find((vid) => vid.name === 'Official Trailer')
-      setVideoName(url.key)
+      let url = data?.videos?.results?.find((vid) => vid.name === 'Official Trailer')
+      setVideoName(url?.key)
     }
 
     onAuthStateChanged(firebaseAuth, (currentUser) => {
@@ -44,10 +45,31 @@ export default React.memo(
 
     const addToList = async () => {
       try {
-        await axios.post("http://localhost:8000/api/user/add",
+        const response = await axios.post("http://localhost:8000/api/user/add",
           { email, data: movieData })
+        console.log(response)
+        if (response) {
+          if (response.data.success) {
+            toast.success(response.data.success);
+          } if (response.data.warning) {
+            toast.info(response.data.warning)
+          } else {
+            toast.error(response.data.error)
+          }
+        } else {
+          toast.error("Movie not added");
+        }
       } catch (error) {
         console.log(error);
+      }
+    }
+
+    const handleDelete = () => {
+      dispatch(removeFromLikedMovies({ email, movieId: movieData.id }))
+      if (dispatch) {
+        toast.success("Movie Removed")
+      } else {
+        toast.error("Movie not deleted")
       }
     }
 
@@ -67,7 +89,7 @@ export default React.memo(
 
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt='movie'
-                    onClick={() => navigate('/video')} />
+                  />
 
                   {
                     !videoName ? (
@@ -98,7 +120,7 @@ export default React.memo(
                       {
                         isLiked ? (
 
-                          <Check title="remove from my list" onClick={() => dispatch(removeFromLikedMovies({ movieId: movieData.id, email }))} />
+                          <CloseIcon title="remove from my list" onClick={() => handleDelete()} />
                         ) : (
 
                           <Add title="add to my list " onClick={addToList} />
@@ -200,7 +222,7 @@ position : absolute;
 width : 20rem;
 top : -18vh;
 left : 0;
-border-radius : 0.4rem;
+border-radius : 0.5rem;
 box-shadow : rgba(0,0,0,0.8) 0px 3px 10px;
 background : #181818;
 transition : 0.3s ease-in-out;

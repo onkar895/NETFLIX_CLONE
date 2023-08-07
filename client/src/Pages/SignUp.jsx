@@ -42,7 +42,7 @@ const SignUp = () => {
   //   If there's an error, it logs the error message to the console.
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate('/home')
+    if (currentUser) navigate('/login')
   })
   // Listening for changes in the authentication state using the onAuthStateChanged function from Firebase's authentication module:
   // If a user is authenticated(i.e., logged in), it navigates to the '/home' route using the navigate function.

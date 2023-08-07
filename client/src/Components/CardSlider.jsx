@@ -92,11 +92,11 @@ const Wrapper = styled(Box)`
 
 `
 const Slider = styled(Box)`
- display : flex;
+  display : flex;
   justify-content : center;
   align-items : center;
   width : max-content;
-  gap : 0.5rem;
+  gap : 1rem;
   transform : translate(0px);
   transition : 0.3s ease-in-out;
   margin-left : 10px;

@@ -1,6 +1,8 @@
 import VideoPlayer from './Components/VideoPlayer'
 import { Login, SignUp, HomePage, Movies, TvShows, UserLikedMovies } from './Pages/index'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function App() {
@@ -9,6 +11,18 @@ function App() {
     <>
 
       <Router>
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
 
         <Routes>
 
