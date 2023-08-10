@@ -90,7 +90,7 @@ export const fetchMovies = createAsyncThunk("netflix/trending", async ({type}, t
 
 export const getUserLikedMovies = createAsyncThunk('netflix/getLiked', async (email) => {
   try {
-    const { data : {movies} } = await axios.get(`http://localhost:8000/api/user/liked/${email}`)
+    const { data : {movies} } = await axios.get(`https://netflix-backend-1bhe.onrender.com/api/user/liked/${email}`)
     return movies
   } catch (err) {
     console.log("error while getting the user liked movies", err)
@@ -99,7 +99,7 @@ export const getUserLikedMovies = createAsyncThunk('netflix/getLiked', async (em
 
 export const removeFromLikedMovies = createAsyncThunk("netflix/removeLiked", async ({ movieId, email }) => {
     try {
-        const { data: { movies } } = await axios.put('http://localhost:8000/api/user/remove', { email, movieId });
+        const { data: { movies } } = await axios.put('https://netflix-backend-1bhe.onrender.com/api/user/remove', { email, movieId });
         return movies;
     } catch (error) {
         console.log(error, 'error while calling remove from liked movies api')

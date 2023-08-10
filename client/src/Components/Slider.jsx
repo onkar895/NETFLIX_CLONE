@@ -8,6 +8,7 @@ const Slider = ({ movies }) => {
 
   const getMoviesFromRange = (from, to) => {
     return movies.slice(from, to)
+
   }
   // console.log(movies)
   return (

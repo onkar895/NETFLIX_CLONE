@@ -110,7 +110,7 @@ const SignUp = () => {
 
             <Box
               sx={{ cursor: 'pointer', position: 'absolute', margin: '15px 10px 0 0' }}
-              onClick={(handleSignUp) => setShowPassword(!showPassword)} >
+              onClick={() => setShowPassword(!showPassword)} >
 
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </Box>
@@ -186,6 +186,7 @@ const Form = styled("form")(({ theme }) => ({
   },
 
   "& input": {
+    color: 'white',
     marginTop: '10px',
     padding: '1.5rem 4rem',
     outline: 'none',

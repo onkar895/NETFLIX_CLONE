@@ -21,13 +21,10 @@ const Image = styled("img")(({ theme }) => ({
   zIndex: '-1',
   width: '100vw',
   height: '100vh',
-  objectfit: 'cover',
-  backgroundRepeat: 'no - repeat',
-  backgroundAttachment: 'fixed',
-  backgroundPosition: 'center',
+  objectFit: 'cover',
+  objectPosition: 'center',
   filter: 'brightness(50%)',
 }))
-
 
 
 export default HomeBanner

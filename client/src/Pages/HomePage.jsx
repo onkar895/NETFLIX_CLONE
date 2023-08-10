@@ -14,7 +14,7 @@ import Slider from '../Components/Slider'
 const HomePage = () => {
 
   const navigate = useNavigate()
-  const [isScrolled, setIsScrolled] = useState(false)
+
 
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded)
   const movies = useSelector((state) => state.netflix.movies)
@@ -31,95 +31,89 @@ const HomePage = () => {
   }, [genresLoaded])
 
 
-  window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true)
-    return () => (window.onscroll = null);
-  }
 
   return (
     <>
-      <Navbar isScrolled={isScrolled} />
+      <Box sx={{ overflowX: 'hidden' }}>
+        <Navbar />
 
-      <HomeBanner />
+        <HomeBanner />
 
-      <HomeContainer>
+        <HomeContainer>
 
-        <Container>
+          <Container>
 
-          <TitleBox>
-            <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>ScooBy-Doo</Typography>
-            <img src={Image} alt="What's New Scoob" />
-          </TitleBox>
-
-
-          <ButtonContainer>
-
-            <Button
-              onClick={() => {
-                navigate('/video')
-              }}
-              variant='contained'
-              size='large'
-              sx={{
-                width: '8rem',
-                background: 'white',
-                color: 'black',
-                fontWeight: 'bolder',
-
-                ":hover": {
-                  background: "red",
-                  color: 'white',
-                }
-              }}
-            >
-              <PlayArrow
-                style={{ fontSize: 30 }} />
-              Play
-            </Button>
-
-            <Button
-              variant='contained'
-              size='large'
-              sx={{
-                gap: '4px',
-                width: '8rem',
-                height: '46px',
-                background: 'rgba(225,225,225,0.6)',
-                fontWeight: 'bolder',
-                color: 'black',
-
-                ":hover": {
-                  background: " rgba(255, 0, 0,0.6) ",
-                  color: 'white',
-                }
-              }}
-            >
-              Info
-              <InfoOutlined style={{ fontSize: 22 }} />
-            </Button>
-
-          </ButtonContainer>
-
-          <InfoContainer>
-            <Typography>
-              Scoob and the gang face a new mystery when they are lured to Spooky Island,
-            </Typography>
-            <Typography>
-              where a sinister force is brainwashing partying college kids into a dark cult.
-            </Typography>
-            <Typography>Watch all you want</Typography>
-          </InfoContainer>
-
-        </Container>
-
-      </HomeContainer>
-
-      <Slider movies={movies} />
+            <TitleBox>
+              <Typography sx={{ fontSize: "70px", fontFamily: "Trebuchet MS", }}>ScooBy-Doo</Typography>
+              <img src={Image} alt="What's New Scoob" />
+            </TitleBox>
 
 
-      <FooterContainer>
-        <h4>Created for education purpose using React-Redux by Omkar Karale @ July 2023</h4>
-      </FooterContainer>
+            <ButtonContainer>
+
+              <Button
+                onClick={() => {
+                  navigate('/video')
+                }}
+                variant='contained'
+                size='large'
+                sx={{
+                  width: '8rem',
+                  background: 'white',
+                  color: 'black',
+                  fontWeight: 'bolder',
+
+                  ":hover": {
+                    background: "red",
+                    color: 'white',
+                  }
+                }}
+              >
+                <PlayArrow
+                  style={{ fontSize: 30 }} />
+                Play
+              </Button>
+
+              <Button
+                variant='contained'
+                size='large'
+                sx={{
+                  gap: '4px',
+                  width: '8rem',
+                  height: '46px',
+                  background: 'rgba(225,225,225,0.6)',
+                  fontWeight: 'bolder',
+                  color: 'black',
+
+                  ":hover": {
+                    background: " rgba(255, 0, 0,0.6) ",
+                    color: 'white',
+                  }
+                }}
+              >
+                Info
+                <InfoOutlined style={{ fontSize: 22 }} />
+              </Button>
+
+            </ButtonContainer>
+
+            <InfoContainer>
+              <Typography>
+                Scoob and the gang face a new mystery when they are lured to Spooky Island,
+              </Typography>
+              <Typography>
+                where a sinister force is brainwashing partying college kids into a dark cult.
+              </Typography>
+              <Typography>Watch all you want</Typography>
+            </InfoContainer>
+
+          </Container>
+
+        </HomeContainer>
+
+        <Slider movies={movies} />
+
+      </Box>
 
     </>
   )
@@ -182,14 +176,4 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   }
 }))
 
-const FooterContainer = styled(Box)`
-display : flex;
-justify-content : center;
-align-items : center;
-margin : 10px;
-padding : 10px;
-background : red;
-border-radius : 3px;
-
-`
 export default HomePage

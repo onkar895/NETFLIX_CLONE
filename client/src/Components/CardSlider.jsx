@@ -79,6 +79,8 @@ flex-direction : column;
 position : relative;
 gap : 0.5rem;
 padding : 0.3rem 0;
+width : 100vw;
+
 
 h2 {
   margin-left : 10px;

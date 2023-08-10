@@ -59,7 +59,7 @@ const BackButton = styled(Box)`
 const Video = styled("video")(({ theme }) => ({
   height: '100%',
   width: '100%',
-  objectFit: 'cover',
+  objectFit: 'contain',
 }))
 
 

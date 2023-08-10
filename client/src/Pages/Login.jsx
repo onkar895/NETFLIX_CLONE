@@ -21,7 +21,6 @@ const Login = () => {
   // console.log(formValues)
 
 
-
   // Handling Login 
   const handleSignIn = async (e) => {
     // console.log(formValue)
@@ -85,6 +84,7 @@ const Login = () => {
             fullWidth required
             variant='standard'
             size="small"
+
             value={formValues.password}
             onChange={(e) => setFormValues({
               ...formValues,
@@ -94,7 +94,7 @@ const Login = () => {
 
           <Box
             sx={{ cursor: 'pointer', position: 'absolute', margin: '28px 10px 0 0' }}
-            onClick={(handleSignIn) => setShowPassword(!showPassword)} >
+            onClick={() => setShowPassword(!showPassword)} >
             {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
           </Box>
 
@@ -152,18 +152,21 @@ font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida San
 position:relative;
 display : flex;
 justify-content:center;
+padding : 1rem;
+align-items: center;
 width:100vw;
 height: 100vh;
 overflow:hidden;
 `
 const Form = styled("form")`
- font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 background: rgba(0,0,0,0.7);
 border-radius : 8px;
 display : flex;
 flex-direction : column;
-margin : 90px 0 20px 35px;
-padding : 40px 50px;
+max-width : 400px;
+width : 85%;
+padding : 1rem 1.5rem;
 
 
 & input {

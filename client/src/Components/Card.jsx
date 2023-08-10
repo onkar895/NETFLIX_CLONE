@@ -45,7 +45,7 @@ export default React.memo(
 
     const addToList = async () => {
       try {
-        const response = await axios.post("http://localhost:8000/api/user/add",
+        const response = await axios.post("https://netflix-backend-1bhe.onrender.com/api/user/add",
           { email, data: movieData })
         console.log(response)
         if (response) {
