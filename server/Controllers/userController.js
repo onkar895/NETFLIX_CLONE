@@ -16,12 +16,12 @@ export const addToLikedMovies = async (req, res) => {
           { new: true }
         );
       } else {
-        return res.json({ message: "Movies already added to liked list" });
+        return res.json({ warning : "Movies already Added"});
       }
     } else {
       await User.create({ email, likedMovies: [data] });
     }
-    return res.json({ message: "Movies added successfully" });
+    return res.json({ success : "Movie Added Successfully" });
   } catch (err) {
     return res.json({ error: "Error while adding movies", err });
   }
@@ -51,7 +51,7 @@ export const removeFromLikedMovies = async (req, res) => {
             const { likedMovies } = user;
             const movieIndex =  likedMovies.findIndex(({ id }) => id === movieId);
             if (!movieIndex) {
-                res.status(400).send({ msg: "Movie not found." });
+                return res.json({ msg: "Movie not found." });
             }
             likedMovies.splice(movieIndex, 1);
             await User.findByIdAndUpdate(
