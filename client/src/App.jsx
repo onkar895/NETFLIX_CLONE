@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 
+
 function App() {
 
   return (
@@ -33,7 +34,6 @@ function App() {
           <Route exact path='/movies' element={<Movies />} />
           <Route exact path='/tv' element={<TvShows />} />
           <Route exact path='/mylist' element={<UserLikedMovies />} />
-
 
         </Routes>
 
