@@ -3,7 +3,7 @@ import cors from 'cors'
 import Connection from './database/db.js'
 import userRoutes from './Routes/userRoutes.js'
 
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const app = express()
 
 app.use(cors())
